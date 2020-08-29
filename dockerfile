@@ -1,8 +1,6 @@
-FROM golang:1.14
+FROM golang:1.14 AS builder
 
-RUN mkdir /app/
-COPY . /app/
-WORKDIR /app
-RUN go build .
+COPY . .
+RUN go build -o /bin/action
 
-ENTRYPOINT ["."]
+ENTRYPOINT ["/bin/action"]
